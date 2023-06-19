@@ -1,13 +1,13 @@
 import re
 
+operators = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+
 def shunting_yard(expression):
-    operators = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}  # Operator precedence
     output_queue = []
     operator_stack = []
-
-    tokens = re.findall(r'\d+|\S', expression)
+    tokens = re.findall(r'\d+\.?\d*|\S', expression)
     for token in tokens:
-        if token.isdigit():
+        if re.match(r'\d+\.?\d*', token):
             output_queue.append(token)
         elif token in operators:
             while (operator_stack and
@@ -30,11 +30,10 @@ def shunting_yard(expression):
 
 def evaluate_postfix(expression):
     stack = []
-
     for token in expression:
-        if token.isdigit():
-            stack.append(int(token))
-        else:
+        if re.match(r'\d+\.?\d*', token):
+            stack.append(float(token))  
+        elif token in operators:
             operand2 = stack.pop()
             operand1 = stack.pop()
             result = perform_operation(token, operand1, operand2)
@@ -59,6 +58,7 @@ def perform_operation(operator, operand1, operand2):
 def evaluate(sentence):
     return evaluate_postfix(shunting_yard(sentence))
 
-  
-#run the evaluate function to get an output
-    
+##use like this:
+##
+##while True:
+##    print(evaluate(input("You: ")))
