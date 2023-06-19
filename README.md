@@ -1,6 +1,7 @@
 # Information
 This is a very simple example on how to evaluate a mathematical expression from a string.  
 Currently only + - * / ^ are possible. I will add more in the future.  
+Negative numbers are not yet supported! I am working on adding them right now.
 If there are any issues, please let me know. I did not have a lot of time for testing.  
 
 # Examples:
