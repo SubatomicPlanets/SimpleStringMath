@@ -1,5 +1,9 @@
 # StrToMath
 This is a very simple example on how to evaluate a mathematical expression from a string.  
+It is only one file, simple to use, and is only 100 lines long.  
+It can convert written out words to numerical words, and calculate math expressions.  
+I made this in python 3.8.10, but really any version should work. I am using only one library, which is built in.  
+  
 Currently only + - * / ^ % are possible. I will add more in the future.  
 If there are any issues, please let me know. I did not have a lot of time for testing.  
 
