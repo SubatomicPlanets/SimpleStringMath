@@ -1,6 +1,5 @@
 import re
 
-#the names of numbers, their scale, and increment
 numbers = {'zero': (1, 0), 'one': (1, 1), 'two': (1, 2), 'three': (1, 3), 'four': (1, 4), 'five': (1, 5),
     'six': (1, 6), 'seven': (1, 7), 'eight': (1, 8), 'nine': (1, 9), 'ten': (1, 10), 'eleven': (1, 11), 'twelve': (1, 12),
     'thirteen': (1, 13), 'fourteen': (1, 14), 'fifteen': (1, 15), 'sixteen': (1, 16), 'seventeen': (1, 17), 'eighteen': (1, 18),
@@ -15,7 +14,6 @@ replacers = {"pi":"3.141592", "e":"2.71828","plus":"+","minus":"-","divided by":
             "times":"*","to the power of":"^","power":"^"}
 
 def word_to_number_converter(sentence):
-    #converts words like "one" to numbers like "1"
     current = 0
     num = 0
     nums = []
@@ -24,7 +22,7 @@ def word_to_number_converter(sentence):
     for r in replacers:
         sentence = re.sub(r"(?<![a-z])"+r+"(?![a-z])", replacers[r], sentence)
 
-    for word in sentence.split():
+    for word in re.findall(r"[a-z]+|\-?\d+\.?\d*|\S", sentence):
         if word in ["and"]:  #words to ignore
             continue
         elif word not in numbers:
@@ -108,8 +106,8 @@ def evaluate(sentence):
     #this is the main function. call this function and pass it a string to get the output.
     sentence = sentence.lower().strip()
     processed_sentence = word_to_number_converter(sentence)  #"one hundred and seventy minus (56*PI)"  ->  "170 - (56*3.141592)"
-    postfix = shunting_yard(processed_sentence)                                      #"170 - (56*pi)"  ->  "170 56 3.141592 * -"
-    result = evaluate_postfix(postfix)                                         #"170 56 3.141592 * -"  ->  "-5.929152000"
+    postfix = shunting_yard(processed_sentence)              #"170 - (56*pi)"  ->  "170 56 3.141592 * -"
+    result = evaluate_postfix(postfix)                   #"170 56 3.141592 * -"  ->  "-5.929152000"
     return result
 
 ##use like this:
