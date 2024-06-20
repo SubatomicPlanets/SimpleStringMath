@@ -11,7 +11,7 @@ operators = {"+": 1, "-": 1, "*": 2, "/": 2, "%":2, "^": 3}  #order of operation
 
 #constants and words that should be replaced with symbols
 replacers = {"pi":"3.141592", "e":"2.71828","plus":"+","minus":"-","divided by":"/","multiplied by":"*",
-            "times":"*","to the power of":"^","power":"^"}
+            "times":"*","to the power of":"^","power":"^","half":"0.5"}
 
 def word_to_number_converter(sentence):
     current = 0
